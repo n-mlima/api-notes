@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', 'font-src \'self\' *.vercel.com *.gstatic.com *.netlify.com *.netlify.app');
+  res.setHeader('Access-Control-Allow-Origin: * ','Content-Security-Policy', 'font-src \'self\' *.vercel.com *.gstatic.com *.netlify.com *.netlify.app');
   next();
 });
 
