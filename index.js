@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors({ origin: '*' }));
+// Configuração do CORS
 const allowedOrigins = ['https://notes-nlima.netlify.app'];
 
 app.use(
@@ -23,11 +23,9 @@ app.use(
 
 const PORT = process.env.PORT || 5000;
 
-app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 let listdo = []; 
-
 
 // Rota para obter todas as tarefas
 app.get('/listdo', (req, res) => {
