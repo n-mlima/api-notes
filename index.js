@@ -5,19 +5,22 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
+const corsOptions = {
+  origin: 'https://notes-nlima.netlify.app/ // Substitua pelo domínio do seu frontend
+  optionsSuccessStatus: 200, // alguns navegadores requerem esse código de status
+};
+
+
+
 
 
 const PORT = process.env.PORT || 5000;
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Security-Policy', 'font-src \'self\' *.vercel.com *.gstatic.com *.netlify.com *.netlify.app');
-  next();
-});
+
 
 
 // Middleware para permitir solicitações de origens diferentes (CORS)
-app.use(cors());
+app.use(cors(corsOptions));
 // Middleware para analisar o corpo das solicitações como JSON
 app.use(bodyParser.json());
 
