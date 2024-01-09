@@ -5,10 +5,21 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const corsOptions = {
-  origin: 'https://notes-nlima.netlify.app/', // Substitua pelo domínio do seu frontend
-  optionsSuccessStatus: 200, // alguns navegadores requerem esse código de status
-};
+
+app.use(cors({ origin: '*' }));
+const allowedOrigins = ['https://notes-nlima.netlify.app'];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 
 const PORT = process.env.PORT || 5000;
 
