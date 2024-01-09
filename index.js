@@ -5,7 +5,8 @@ const cors = require('cors');
 const app = express();
 
 
-const port= process.env.PORT ||3001;
+const PORT = process.env.PORT || 5000;
+
 
 // Middleware para permitir solicitações de origens diferentes (CORS)
 app.use(cors());
@@ -13,20 +14,20 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Dados de exemplo
-let listDo = [
+let listdo = [
   
 ];
 
 // Rota para obter todas as tarefas
 app.get('/listdo', (req, res) => {
-  res.json(listDo);
+  res.json(listdo);
 });
 
 // Rota para criar uma nova tarefa
 app.post('/listdo', (req, res) => {
   const newTask = req.body;
   newTask.id = Math.floor(Math.random() * (10000 - 1) + 1);
-  listDo.push(newTask);
+  listdo.push(newTask);
   res.json(newTask);
 });
 
@@ -35,7 +36,7 @@ app.put('/listdo/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
   const updatedTask = req.body;
 
-  listDo = listDo.map((task) =>
+  listdo = listdo.map((task) =>
     task.id === taskId ? { ...task, ...updatedTask } : task
   );
 
@@ -45,10 +46,10 @@ app.put('/listdo/:id', (req, res) => {
 // Rota para excluir uma tarefa
 app.delete('/listdo/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
-  listDo = listDo.filter((task) => task.id !== taskId);
+  listdo = listdo.filter((task) => task.id !== taskId);
   res.json({ message: 'Task deleted successfully' });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
