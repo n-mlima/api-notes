@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const PORT = 5000;
+
+
+const port= process.env.PORT ||3001;
 
 // Middleware para permitir solicitações de origens diferentes (CORS)
 app.use(cors());
@@ -47,6 +49,6 @@ app.delete('/listdo/:id', (req, res) => {
   res.json({ message: 'Task deleted successfully' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
