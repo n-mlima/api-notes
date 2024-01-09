@@ -1,24 +1,22 @@
-require('dotenv').config();
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const corsOptions = {
-  origin: 'https://notes-nlima.netlify.app', // Substitua pelo domínio do seu frontend
-  optionsSuccessStatus: 200, // alguns navegadores requerem esse código de status
-};
+
 
 const PORT = process.env.PORT || 5000;
 
+
 // Middleware para permitir solicitações de origens diferentes (CORS)
-app.use(cors(corsOptions));
+app.use(cors());
 // Middleware para analisar o corpo das solicitações como JSON
 app.use(bodyParser.json());
 
 // Dados de exemplo
-let listdo = [];
+let listdo = [
+  
+];
 
 // Rota para obter todas as tarefas
 app.get('/listdo', (req, res) => {
