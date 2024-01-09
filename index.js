@@ -9,8 +9,10 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-
-
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', 'font-src \'self\' *.vercel.com *.gstatic.com');
+  next();
+});
 
 
 // Middleware para permitir solicitações de origens diferentes (CORS)
